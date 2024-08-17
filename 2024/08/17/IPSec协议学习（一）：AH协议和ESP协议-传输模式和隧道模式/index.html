@@ -19,33 +19,26 @@
   <meta name="author" content="starduucks">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在局域网里实现文件共享，可以在内网环境进行高效协作。本文主要参考自两台（或多台）电脑怎么实现文件共享_两台电脑怎么共享文件-CSDN博客，总结了几种实现方式。 一、在同一个局域网内（无论是连接的WiFi还是网线），工作的需要，需要共享一些文件：1、找到需要共享的文件夹（或者文件）位置，如下图，比如需要共享“我的电脑的C盘”  2、在对应的文件夹，也就是桌面文件夹，右键鼠标，点击属性  3、进入属性">
+    <meta name="description" content="IPSec协议（IP Security Protocal），是在网络层增加的安全补充协议，通过额外的报文头部信息实现。它包括三个方面：认证、保密和密钥管理。为了实现这几项功能，IPSec协议实际是一组有机结合的协议簇，主要由三大协议构成：密钥交换协议（Internet Key Exchange，IKE）、认证头协议（Authentication Header，AH）以及封装安全载荷协议（Encap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何在局域网共享文件">
-<meta property="og:url" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:title" content="IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式">
+<meta property="og:url" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="王老鸭">
-<meta property="og:description" content="在局域网里实现文件共享，可以在内网环境进行高效协作。本文主要参考自两台（或多台）电脑怎么实现文件共享_两台电脑怎么共享文件-CSDN博客，总结了几种实现方式。 一、在同一个局域网内（无论是连接的WiFi还是网线），工作的需要，需要共享一些文件：1、找到需要共享的文件夹（或者文件）位置，如下图，比如需要共享“我的电脑的C盘”  2、在对应的文件夹，也就是桌面文件夹，右键鼠标，点击属性  3、进入属性">
+<meta property="og:description" content="IPSec协议（IP Security Protocal），是在网络层增加的安全补充协议，通过额外的报文头部信息实现。它包括三个方面：认证、保密和密钥管理。为了实现这几项功能，IPSec协议实际是一组有机结合的协议簇，主要由三大协议构成：密钥交换协议（Internet Key Exchange，IKE）、认证头协议（Authentication Header，AH）以及封装安全载荷协议（Encap">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_1.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_2.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_3_1.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_3_2.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_4.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_5.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_6.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_7_1.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_7_2.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_8_1.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_8_2.png">
-<meta property="article:published_time" content="2024-08-14T10:04:22.000Z">
-<meta property="article:modified_time" content="2024-08-14T10:30:36.380Z">
+<meta property="og:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/%E5%8A%9F%E8%83%BD.png">
+<meta property="og:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/tunnel.png">
+<meta property="og:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/transport.png">
+<meta property="article:published_time" content="2024-08-17T06:30:53.000Z">
+<meta property="article:modified_time" content="2024-08-17T08:42:33.577Z">
 <meta property="article:author" content="starduucks">
+<meta property="article:tag" content="安全协议">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://starduucks.github.io/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_1.png">
+<meta name="twitter:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/%E5%8A%9F%E8%83%BD.png">
   
   
   
-  <title>如何在局域网共享文件 - 王老鸭</title>
+  <title>IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式 - 王老鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -211,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="如何在局域网共享文件"></span>
+            <span id="subtitle" data-typed-text="IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式"></span>
           
         </div>
 
@@ -222,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-14 18:04" pubdate>
-          2024年8月14日 晚上
+        <time datetime="2024-08-17 14:30" pubdate>
+          2024年8月17日 下午
         </time>
       </span>
     
@@ -234,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          414 字
+          1.2k 字
         
       </span>
     
@@ -245,7 +238,7 @@
         
         
         
-          4 分钟
+          11 分钟
         
       </span>
     
@@ -282,28 +275,36 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">如何在局域网共享文件</h1>
+            <h1 id="seo-header">IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式</h1>
             
             
               <div class="markdown-body">
                 
-                <p>在局域网里实现文件共享，可以在内网环境进行高效协作。本文主要参考自<a target="_blank" rel="noopener" href="https://blog.csdn.net/Sailor_luo/article/details/105689528">两台（或多台）电脑怎么实现文件共享_两台电脑怎么共享文件-CSDN博客</a>，总结了几种实现方式。</p>
-<p>一、在同一个局域网内（无论是连接的WiFi还是网线），工作的需要，需要共享一些文件：<br>1、找到需要共享的文件夹（或者文件）位置，如下图，比如需要共享“我的电脑的C盘”</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_1.png" srcset="/img/loading.gif" lazyload></p>
-<p>2、在对应的文件夹，也就是桌面文件夹，右键鼠标，点击属性</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_2.png" srcset="/img/loading.gif" lazyload></p>
-<p>3、进入属性面板后，选择共享，然后点击高级共享</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_3_1.png" srcset="/img/loading.gif" lazyload><br><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_3_2.png" srcset="/img/loading.gif" lazyload></p>
-<p>4、进入高级共享后，勾选“共享此文件夹”，原来不可点击的权限变成可以点击的状态</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_4.png" srcset="/img/loading.gif" lazyload></p>
-<p>5、点击权限，给制定用户赋予权限，这里为了说明，直接选择everyone，也就是任何人都可以访问</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_5.png" srcset="/img/loading.gif" lazyload></p>
-<p>6、点击确定，应用后，回到属性界面，复制网络路径，发给准备共享的人A</p>
-<p><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_6.png" srcset="/img/loading.gif" lazyload></p>
-<p>7、在另外一台机器上（用户A）的“文件资源管理地址”中（或者WINDOWS+R：输入“\地址名称”）粘贴后，回车，即可看到分享的文件了</p>
-<p>（1）方式一：<br><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_7_1.png" srcset="/img/loading.gif" lazyload><br>（2）方式二：<br><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_7_2.png" srcset="/img/loading.gif" lazyload></p>
-<p>以上，为其中一种操作步骤，A用户可以随时通过“资源管理器”中“网络”查看局域网中其他同事共享的文件（如图），<br><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_8_1.png" srcset="/img/loading.gif" lazyload></p>
-<p>同时，共享者，也可以查看自己哪些文件共享到局域网状态（显示一个共享标志，如下图所示）：<br><img src="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/img_1_8_2.png" srcset="/img/loading.gif" lazyload></p>
+                <p>IPSec协议（IP Security Protocal），是在网络层增加的安全补充协议，通过额外的报文头部信息实现。它包括三个方面：认证、保密和密钥管理。为了实现这几项功能，IPSec协议实际是一组有机结合的协议簇，主要由三大协议构成：密钥交换协议（Internet Key Exchange，IKE）、认证头协议（Authentication Header，AH）以及封装安全载荷协议（Encapsulating Security Payload，ESP）协议。</p>
+<h1 id="一、AH协议与ESP协议"><a href="#一、AH协议与ESP协议" class="headerlink" title="一、AH协议与ESP协议"></a>一、AH协议与ESP协议</h1><p>AH协议提供了数据流的认证功能，ESP协议则提供了保密功能。此外，AH协议与ESP协议可以嵌套使用，组合方式为“Encrypt then MAC，EtM”。该模式优于TLS协议以及SSH协议中的MtE模式以及E&amp;M模式，因此我理解IPSec协议无需像TLS协议一样——将分组密码工作模式转换为认证加密。下表列举了AH协议与ESP协议所提供的安全功能。</p>
+<p><img src="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/%E5%8A%9F%E8%83%BD.png" srcset="/img/loading.gif" lazyload></p>
+<p>注意：作为可选项，ESP还可以提供认证服务，使用的认证算法有HMAC-MD5和HMAC-SHA1等。虽然AH和ESP都可以提供认证服务，但是AH协议提供的认证范围包括整个IP数据包，而ESP协议的认证范围仅包括IP数据包的载荷部分，因此AH提供的认证服务要强于ESP。所以会看到，在启用ESP模式时，ESP加密的载荷后还会有可选的ESP摘要字段。这与AH提供的AH摘要位置不同。</p>
+<h1 id="二、封装模式"><a href="#二、封装模式" class="headerlink" title="二、封装模式"></a>二、封装模式</h1><p>两种模式的本质区别，就在于是否需要将原ip前再接入新ip。</p>
+<h2 id="隧道模式"><a href="#隧道模式" class="headerlink" title="隧道模式"></a>隧道模式</h2><p>隧道（ tunnel ）模式：隧道模式保护所有 IP 数据并封装新的 IP 头部，不使用原始 IP 头部进行路由。在 IPSec 头部（ ESP 或 AH ）前加入新的 IP 头部，源 IP 地址和目的 IP 地址为 IPSec peer 地址。并允许 RFC 1918（私有地址）规定的地址参与 VPN 穿越互联网。如下图：</p>
+<p><img src="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/tunnel.png" srcset="/img/loading.gif" lazyload></p>
+<p>由图中可以清晰地看到，无论是AH协议还是ESP协议，隧道模式都会在原ip（内网ip）前接上新ip。</p>
+<h3 id="封装流程"><a href="#封装流程" class="headerlink" title="封装流程"></a>封装流程</h3><ul>
+<li>1.在原IP报文中找到TCP报文部分，在其后添加相应的ESP trailer信息。ESP trailer 包含三部分：Padding，Pad length 和 Next header。Padding 即使用块加密时，最后一个数据块长度不足时所做的填充。Pad length 指填充的长度，方便拆包时找到用来填充的数据段。Next header 标明被封装的原报文的协议类型，例如 6 &#x3D; TCP。</li>
+<li>2.将原 TCP 报文和第1步得到的 ESP trailer 作为一个整体进行加密封装。具体的加密算法和密钥由SA给出。</li>
+<li>3.为第2步得到的密文添加 ESP 头。ESP 头由 SPI (Security Parameter Index) 和 Seq #两部分组成。密文和 ESP头合起来称为”enchilada”，构成认证部分。</li>
+<li>4.附加完整性度量结果（ICV）。对第3步生成的”enchilada”认证部分做摘要（ESP Authentication Data），得到一个32位整数倍的 ICV，附在”enchilada”之后。ICV 生成算法和验证密钥由 SA 给出。</li>
+<li>5.将原始的 IP 报文头中的协议号改为50（代表 ESP），然后将 IP 报文头加到第4步的结果之前构成 IPsec 报文。</li>
+</ul>
+<h3 id="解封装流程"><a href="#解封装流程" class="headerlink" title="解封装流程"></a>解封装流程</h3><ul>
+<li>1.接收方收到 IP 报文后，发现协议类型是50，标明这是一个 ESP 包。首先查看 ESP 头，通过安全参数索引号 SPI决定数据报文所对应的 SA，获得对应的模式（隧道或传输模式）以及安全规范。</li>
+<li>2.根据 SA 指定的摘要算法和验证密钥计算”enchilada”的摘要值，与附在 IP 报文最后的 ICV进行对比，二者相同则数据完整性未被破坏。</li>
+<li>3.检查 ESP 头中的 Seq # 里的序列号，保证数据是新的，避免重放攻击</li>
+<li>4.根据 SA 所指定的加密算法和密钥，解密密文段，得到原来的 TCP 报文和 ESP trailer。</li>
+<li>5.根据 ESP trailer 的填充长度信息，找出填充字段的长度，删除填充字段得到原来的 TCP 报文。 根据 TCP报文头信息将报文交付给传输层。</li>
+</ul>
+<h2 id="传输模式"><a href="#传输模式" class="headerlink" title="传输模式"></a>传输模式</h2><p>隧道（ tunnel ）模式：传输模式保护原始 IP 头部后面的数据，在原始 IP 头部和 payload 间插入 IPSec 头部（ ESP 或 AH ）。典型应用为端到端的会话，并且要求原始 IP 头部全局可路由。如下图：</p>
+<p><img src="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/transport.png" srcset="/img/loading.gif" lazyload></p>
+<p>传输模式是两台电脑直接通过 IPSec VPN 连接的时候用的，隧道模式是只要一端采用网关的话就需要用隧道模式。因为如果采用传输模式连接且一端是网关的时候，因为网关有 NAT 功能，会将地址变换，而传输模式是只识别原 IP 的，所以这样就会被直接丢弃掉。而隧道模式则是用 IPSec peer 地址直接建立隧道用于两端的通讯，不会出现被抛弃的情况。</p>
 
                 
               </div>
@@ -313,6 +314,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE/" class="print-no-link">#安全协议</a>
+      
+    </div>
+  
 </div>
 
 
@@ -321,8 +329,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>如何在局域网共享文件</div>
-      <div>http://starduucks.github.io/2024/08/14/如何在局域网共享文件/</div>
+      <div>IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式</div>
+      <div>http://starduucks.github.io/2024/08/17/IPSec协议学习（一）：AH协议和ESP协议-传输模式和隧道模式/</div>
     </div>
     <div class="license-meta">
       
@@ -334,7 +342,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月14日</div>
+          <div>2024年8月17日</div>
         </div>
       
       
@@ -366,18 +374,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/" title="IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/13/%E5%AF%86%E8%AF%84%E8%83%BD%E5%8A%9B%E9%AA%8C%E8%AF%81%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%9B%BD%E5%AF%86TLS/" title="密评能力验证（一）：国密TLS">
-                        <span class="hidden-mobile">密评能力验证（一）：国密TLS</span>
+                      <a href="/2024/08/14/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B1%80%E5%9F%9F%E7%BD%91%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6/" title="如何在局域网共享文件">
+                        <span class="hidden-mobile">如何在局域网共享文件</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

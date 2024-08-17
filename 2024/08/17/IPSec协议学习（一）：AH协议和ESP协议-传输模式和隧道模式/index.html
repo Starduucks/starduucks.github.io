@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/tunnel.png">
 <meta property="og:image" content="http://starduucks.github.io/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/transport.png">
 <meta property="article:published_time" content="2024-08-17T06:30:53.000Z">
-<meta property="article:modified_time" content="2024-08-17T08:42:33.577Z">
+<meta property="article:modified_time" content="2024-08-17T08:49:56.828Z">
 <meta property="article:author" content="starduucks">
 <meta property="article:tag" content="安全协议">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -281,6 +281,7 @@
               <div class="markdown-body">
                 
                 <p>IPSec协议（IP Security Protocal），是在网络层增加的安全补充协议，通过额外的报文头部信息实现。它包括三个方面：认证、保密和密钥管理。为了实现这几项功能，IPSec协议实际是一组有机结合的协议簇，主要由三大协议构成：密钥交换协议（Internet Key Exchange，IKE）、认证头协议（Authentication Header，AH）以及封装安全载荷协议（Encapsulating Security Payload，ESP）协议。</p>
+<p>主要参考自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/dream397/p/14647052.html">IPSec 的两种工作模式及其报文封装格式</a></p>
 <h1 id="一、AH协议与ESP协议"><a href="#一、AH协议与ESP协议" class="headerlink" title="一、AH协议与ESP协议"></a>一、AH协议与ESP协议</h1><p>AH协议提供了数据流的认证功能，ESP协议则提供了保密功能。此外，AH协议与ESP协议可以嵌套使用，组合方式为“Encrypt then MAC，EtM”。该模式优于TLS协议以及SSH协议中的MtE模式以及E&amp;M模式，因此我理解IPSec协议无需像TLS协议一样——将分组密码工作模式转换为认证加密。下表列举了AH协议与ESP协议所提供的安全功能。</p>
 <p><img src="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/%E5%8A%9F%E8%83%BD.png" srcset="/img/loading.gif" lazyload></p>
 <p>注意：作为可选项，ESP还可以提供认证服务，使用的认证算法有HMAC-MD5和HMAC-SHA1等。虽然AH和ESP都可以提供认证服务，但是AH协议提供的认证范围包括整个IP数据包，而ESP协议的认证范围仅包括IP数据包的载荷部分，因此AH提供的认证服务要强于ESP。所以会看到，在启用ESP模式时，ESP加密的载荷后还会有可选的ESP摘要字段。这与AH提供的AH摘要位置不同。</p>

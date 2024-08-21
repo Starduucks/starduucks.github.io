@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>WORD高级查找方式：正则表达式</title>
+    <link href="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <url>/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h1 id="为什么要学习正则表达式？"><a href="#为什么要学习正则表达式？" class="headerlink" title="为什么要学习正则表达式？"></a>为什么要学习正则表达式？</h1><p>来看两段代码：</p><pre><code class="hljs">([!^11])@\1</code></pre><p>以及：</p><pre><code class="hljs">([!^11]&#123;32&#125;)@([!^11]&#123;32&#125;)\1</code></pre><p>达成的效果如下图所示：</p><p><img src="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example1.png"></p><p><img src="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example2.png"></p><p>会发现，图一查找到的是连续两个相同的字符（即AA），而图二找到的是相隔两个字符的两个长度为2的字符串（即ABXYAB）。通过这两个例子，可以一窥正则表达式的强大之处。</p><p>正式开始前，我们先定义一对术语：</p><ul><li>通配符指的是您可以用来代表一个或多个字符的键盘字符。例如，星号 (*) 通常代表一个或多个字符，问号 (?) 通常代表单个字符。</li><li>正则表达式指的是您可以用来查找和替换文本模式的文本字符和通配符组合。文本字符指的是必须存在于目标文本字符串中的文本。通配符指的是目标字符串中可能各不相同的文本。</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>效率</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式</title>
     <link href="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/"/>
     <url>/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/</url>

@@ -19,25 +19,23 @@
   <meta name="author" content="starduucks">
   <meta name="keywords" content="">
   
-    <meta name="description" content="为什么要学习正则表达式？来看两段代码： ([!^11])@\1  以及： ([!^11]&#123;32&#125;)@([!^11]&#123;32&#125;)\1  达成的效果如下图所示：   会发现，图一查找到的是连续两个相同的字符（即AA），而图二找到的是相隔两个字符的两个长度为2的字符串（即ABXYAB）。通过这两个例子，可以一窥正则表达式的强大之处。 正式开始前，我们先定义一对术语：">
+    <meta name="description" content="类型 上市时间：2024年 类型：德式 平均时长：10分钟&#x2F;人 设置时长：1分钟   第一印象在今年的Dicecon桌游展上，突然看到喧闹的角落里露出了让人平静的海蓝色。很幸运的是，前桌的体验时间刚好结束。我们作为拼图爱好者，怎么能错过这等好事？ 乍一看，这不就是卡卡颂海洋版嘛！首先，都是要揣着自己的版块，贴合现有版图，拼接到合适的位置。游戏最后也是根据玩家拼好的版图，根据特定规则来计算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WORD高级查找方式：正则表达式">
-<meta property="og:url" content="http://starduucks.github.io/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:title" content="游戏评测—灯塔巡航">
+<meta property="og:url" content="http://starduucks.github.io/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/index.html">
 <meta property="og:site_name" content="王老鸭">
-<meta property="og:description" content="为什么要学习正则表达式？来看两段代码： ([!^11])@\1  以及： ([!^11]&#123;32&#125;)@([!^11]&#123;32&#125;)\1  达成的效果如下图所示：   会发现，图一查找到的是连续两个相同的字符（即AA），而图二找到的是相隔两个字符的两个长度为2的字符串（即ABXYAB）。通过这两个例子，可以一窥正则表达式的强大之处。 正式开始前，我们先定义一对术语：">
+<meta property="og:description" content="类型 上市时间：2024年 类型：德式 平均时长：10分钟&#x2F;人 设置时长：1分钟   第一印象在今年的Dicecon桌游展上，突然看到喧闹的角落里露出了让人平静的海蓝色。很幸运的是，前桌的体验时间刚好结束。我们作为拼图爱好者，怎么能错过这等好事？ 乍一看，这不就是卡卡颂海洋版嘛！首先，都是要揣着自己的版块，贴合现有版图，拼接到合适的位置。游戏最后也是根据玩家拼好的版图，根据特定规则来计算">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example1.png">
-<meta property="og:image" content="http://starduucks.github.io/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example2.png">
-<meta property="article:published_time" content="2024-08-21T14:54:01.000Z">
-<meta property="article:modified_time" content="2024-08-21T15:08:45.848Z">
+<meta property="og:image" content="http://starduucks.github.io/img/%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA%E6%A1%8C%E6%B8%B8.jpg">
+<meta property="article:published_time" content="2024-08-27T11:34:27.000Z">
+<meta property="article:modified_time" content="2024-08-27T12:19:20.340Z">
 <meta property="article:author" content="starduucks">
-<meta property="article:tag" content="效率">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://starduucks.github.io/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example1.png">
+<meta name="twitter:image" content="http://starduucks.github.io/img/%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA%E6%A1%8C%E6%B8%B8.jpg">
   
   
   
-  <title>WORD高级查找方式：正则表达式 - 王老鸭</title>
+  <title>游戏评测—灯塔巡航 - 王老鸭</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,13 +195,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/ori.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/%E7%81%AF%E5%A1%94.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WORD高级查找方式：正则表达式"></span>
+            <span id="subtitle" data-typed-text="游戏评测—灯塔巡航"></span>
           
         </div>
 
@@ -214,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-21 22:54" pubdate>
-          2024年8月21日 晚上
+        <time datetime="2024-08-27 19:34" pubdate>
+          2024年8月27日 晚上
         </time>
       </span>
     
@@ -226,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          249 字
+          722 字
         
       </span>
     
@@ -237,7 +235,7 @@
         
         
         
-          3 分钟
+          7 分钟
         
       </span>
     
@@ -283,26 +281,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">WORD高级查找方式：正则表达式</h1>
+            <h1 id="seo-header">游戏评测—灯塔巡航</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="为什么要学习正则表达式？"><a href="#为什么要学习正则表达式？" class="headerlink" title="为什么要学习正则表达式？"></a>为什么要学习正则表达式？</h1><p>来看两段代码：</p>
-<pre><code class="hljs">([!^11])@\1
-</code></pre>
-<p>以及：</p>
-<pre><code class="hljs">([!^11]&#123;32&#125;)@([!^11]&#123;32&#125;)\1
-</code></pre>
-<p>达成的效果如下图所示：</p>
-<p><img src="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example1.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/example2.png" srcset="/img/loading.gif" lazyload></p>
-<p>会发现，图一查找到的是连续两个相同的字符（即AA），而图二找到的是相隔两个字符的两个长度为2的字符串（即ABXYAB）。通过这两个例子，可以一窥正则表达式的强大之处。</p>
-<p>正式开始前，我们先定义一对术语：</p>
-<ul>
-<li>通配符指的是您可以用来代表一个或多个字符的键盘字符。例如，星号 (*) 通常代表一个或多个字符，问号 (?) 通常代表单个字符。</li>
-<li>正则表达式指的是您可以用来查找和替换文本模式的文本字符和通配符组合。文本字符指的是必须存在于目标文本字符串中的文本。通配符指的是目标字符串中可能各不相同的文本。</li>
+                <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
+<li>上市时间：2024年</li>
+<li>类型：德式</li>
+<li>平均时长：10分钟&#x2F;人</li>
+<li>设置时长：1分钟</li>
 </ul>
+<p><img src="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/%E6%B8%B8%E6%88%8F%E8%A6%81%E6%B1%82.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h2><p>在今年的Dicecon桌游展上，突然看到喧闹的角落里露出了让人平静的海蓝色。很幸运的是，前桌的体验时间刚好结束。我们作为拼图爱好者，怎么能错过这等好事？</p>
+<p>乍一看，这不就是卡卡颂海洋版嘛！首先，都是要揣着自己的版块，贴合现有版图，拼接到合适的位置。游戏最后也是根据玩家拼好的版图，根据特定规则来计算总分。</p>
+<p>但是经过小哥介绍，两款桌游还是有着显著差别：这是一款合作类桌游，因此同样适合双人，甚至单人游玩！这点比卡卡颂更加优秀。毕竟你不能拿着竞争类桌游来左右互搏吧！第二点显著的不同，是引入了移动力的概念，于是玩家的行动较为受限。在游戏中，只有你的船开到了感兴趣的地点，那里才能继续探索。同时《灯塔领航》的版块是有方向的，玩家不能自由旋转。因此，拼接版块时，难度会更大，因此游戏中还可以在玩家之间交换版块。这些都使得游戏的复杂度显著提高。</p>
+<p><img src="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/%E9%85%8D%E4%BB%B6.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="实际体验"><a href="#实际体验" class="headerlink" title="实际体验"></a>实际体验</h2><h3 id="上手难度"><a href="#上手难度" class="headerlink" title="上手难度"></a>上手难度</h3><p>游戏规则本身并不复杂，看下面的规则书就好了。同时由于游戏本身自带扩展，所有玩家在第一次游玩时可以选择是否加扩。我们选择了上来就加扩展，实际游玩下来，很快就接受了整个游戏。但是作为新手，最好是从基础版玩起，这样不会在游戏开始时陷入选择困难症。</p>
+<p><img src="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/%E5%9F%BA%E7%A1%80%E8%A7%84%E5%88%991.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/%E5%9F%BA%E7%A1%80%E8%A7%84%E5%88%992.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/%E5%9F%BA%E7%A1%80%E8%A7%84%E5%88%993.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="游戏策略"><a href="#游戏策略" class="headerlink" title="游戏策略"></a>游戏策略</h3><p>与小清新的外观不同，这款游戏实际游玩的感受是：太 烧 脑 了！由于移动力的限制，同时还有方向的制约，玩家很容易无路可走。想象中的游戏进程应该是大家团结协作，有人负责砍分，有人负责传递版块，但实际中的样子却是从某个节点开始，突然就有人拼不了版块需要求救，然后很快大家都开始求救，争取少弃一张板块。</p>
+<p>现在总结了一些游玩经验，方便以后回头看看（年轻的自己）</p>
+<ul>
+<li>争取拼成圆形，中间力图不要有空隙，否则会掉很多分。</li>
+<li>新手尽量少拼大型陆地，否则会极大影响船的移动。多个小型岛屿的性价比最高。</li>
+<li>如果加了扩展，尽量要有一个机动性强的角色，这样不至于在游戏后期走投无路。</li>
+</ul>
+<p>未完待续……</p>
 
                 
               </div>
@@ -312,13 +318,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E6%95%88%E7%8E%87/" class="print-no-link">#效率</a>
-      
-    </div>
-  
 </div>
 
 
@@ -327,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WORD高级查找方式：正则表达式</div>
-      <div>http://starduucks.github.io/2024/08/21/WORD高级查找方式：正则表达式/</div>
+      <div>游戏评测—灯塔巡航</div>
+      <div>http://starduucks.github.io/2024/08/27/游戏评测—灯塔巡航/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月21日</div>
+          <div>2024年8月27日</div>
         </div>
       
       
@@ -372,18 +371,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/27/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B%E2%80%94%E7%81%AF%E5%A1%94%E5%B7%A1%E8%88%AA/" title="游戏评测—灯塔巡航">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">游戏评测—灯塔巡航</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/17/IPSec%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AAH%E5%8D%8F%E8%AE%AE%E5%92%8CESP%E5%8D%8F%E8%AE%AE-%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9A%A7%E9%81%93%E6%A8%A1%E5%BC%8F/" title="IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式">
-                        <span class="hidden-mobile">IPSec协议学习（一）：AH协议和ESP协议&amp;传输模式和隧道模式</span>
+                      <a href="/2024/08/21/WORD%E9%AB%98%E7%BA%A7%E6%9F%A5%E6%89%BE%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="WORD高级查找方式：正则表达式">
+                        <span class="hidden-mobile">WORD高级查找方式：正则表达式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

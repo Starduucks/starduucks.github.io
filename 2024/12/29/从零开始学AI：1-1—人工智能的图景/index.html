@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>从零开始学AI：1-1—人工智能的图景 | 银之树</title><meta name="author" content="starduucks"><meta name="copyright" content="starduucks"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="好了，这个天坑终于挖开了第一锹土。本系列是对美国两位大佬的著作——《人工智能 现代方法》一书的中译版的学习笔记。这本书包罗万象，并且不需要太多的基础。据作者所述，本书需要对计算机科学的基本概念的熟悉程度达到大二水平（算法、数据结构、复杂性这三个领域），但遗憾的是我也从未系统学习过这三门课程。因此在学习过程中，如果书本中出现了较为生疏的名次，我将会开启番外更新（例如1.1(a)，1.1(b)）。未来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始学AI：1-1—人工智能的图景">
+<meta property="og:url" content="http://starduucks.github.io/2024/12/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6AI%EF%BC%9A1-1%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9B%BE%E6%99%AF/index.html">
+<meta property="og:site_name" content="银之树">
+<meta property="og:description" content="好了，这个天坑终于挖开了第一锹土。本系列是对美国两位大佬的著作——《人工智能 现代方法》一书的中译版的学习笔记。这本书包罗万象，并且不需要太多的基础。据作者所述，本书需要对计算机科学的基本概念的熟悉程度达到大二水平（算法、数据结构、复杂性这三个领域），但遗憾的是我也从未系统学习过这三门课程。因此在学习过程中，如果书本中出现了较为生疏的名次，我将会开启番外更新（例如1.1(a)，1.1(b)）。未来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://starduucks.github.io/img/STOAT.png">
+<meta property="article:published_time" content="2024-12-29T07:24:40.000Z">
+<meta property="article:modified_time" content="2024-12-29T10:18:53.098Z">
+<meta property="article:author" content="starduucks">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://starduucks.github.io/img/STOAT.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://starduucks.github.io/2024/12/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6AI%EF%BC%9A1-1%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9B%BE%E6%99%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '从零开始学AI：1-1—人工智能的图景',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-12-29 18:18:53'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/STOAT.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/ori.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="银之树"><img class="site-icon" src="/img/duck.jpg"/><span class="site-name">银之树</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">从零开始学AI：1-1—人工智能的图景</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-29T07:24:40.000Z" title="发表于 2024-12-29 15:24:40">2024-12-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-12-29T10:18:53.098Z" title="更新于 2024-12-29 18:18:53">2024-12-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="从零开始学AI：1-1—人工智能的图景"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>好了，这个天坑终于挖开了第一锹土。本系列是对美国两位大佬的著作——《人工智能 现代方法》一书的中译版的学习笔记。这本书包罗万象，并且不需要太多的基础。据作者所述，本书需要对计算机科学的基本概念的熟悉程度达到大二水平（算法、数据结构、复杂性这三个领域），但遗憾的是我也从未系统学习过这三门课程。因此在学习过程中，如果书本中出现了较为生疏的名次，我将会开启番外更新（例如1.1(a)，1.1(b)）。未来很长一段时间，这个系列就将是网站主要更新的内容，先立个flag，一周一次（手动狗头）。</p>
+<p>如今，无论哪个行业，AI都有能力掺上一脚，这正是因为AI的目标，就是用我们人类的聪明才智，构建一个智能体。这个智能体一定要拥有“智慧”，可以自动执行一些命令，甚至具有自主学习的能力，从而代替人类，好让我们有理由躺平。那么，“人工智能”一词中的智能该如何理解呢？</p>
+<h1>1.1.1 何谓人工智能？</h1>
+<p>对于我们人类来说，我们的大脑非常精妙。在接收到不同类型的刺激后，经过大脑处理，然后大脑就会命令我们身体的某些部位做出相应的行为。直到目前为止，人类的大脑依然是地球上最精密，最复杂的处理器，但是人类对外界刺激做出行动的整个流程依然可以简单地抽象为三步：输入（接受刺激）、处理（计算、决策）、输出（行为）。一些伟人会更容易做出一些正确的决策，于是世间将他们尊称为“智者”；相反一些人做事不太经过深思熟虑，习惯于遵从于自己的第一反应。事后证明这些决策错误的概率比较大，这些人容易被称为“愚者”，用低情商的话说，就是这个人不太聪明的样子。</p>
+<p>总体来说，评价一个人是否智慧，主要是评价这个人的行动。而支持行动的一个重要因素就是“思考”的过程（除此之外，还需要有一些不假思索的反应，例如生物中的“缩手反射”等）。人工智能的研究对象叫做“智能体”，即能够采取行动的东西。人工智能的研究可以从两个维度来分类，即关注这个智能体做事流程的哪一部分（是内在的思考？还是外在的行动？）；以及我们如何评价智能体做出的行动。下面的表格列举了历史上这两个维度下的研究主题，这些领域之间研究人员相互鄙视，但也在相互促进：</p>
+<p><img src="/2024/12/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6AI%EF%BC%9A1-1%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9B%BE%E6%99%AF/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD.png" alt="什么是人工智能"></p>
+<h2 id="A、类人思考——认知建模的方法">A、类人思考——认知建模的方法</h2>
+<p>要想制造像人一样思考的家伙，前提必须是研究人类的思维方式。人脑活动错综复杂，我们必须通过一系列生物实验（当然，主要是研究小白鼠）才能从某个很小的角度去理解人脑的机制。以下三种方式都是理解人类思维的途径：</p>
+<ul>
+<li>内省（introspection）——试图在自己进行思维活动时捕获情绪；</li>
+<li>心理实验（psychological experiment）——观察一个人的行为；</li>
+<li>大脑成像（brain imaging）——观察大脑的活动。<br>
+这门科学叫做“认知科学”，是一门计算机与心理学之间的交叉学科，融合了计算机的建模方法与心理学的实验方法。研究人类的思维方法非常有趣，但是采用的研究技术和最终成果并不是本书关注的重点。</li>
+</ul>
+<h2 id="B、类人行为——通过图灵测试">B、类人行为——通过图灵测试</h2>
+<p>与“类人思考”的关注点不同，类人行为的目的是要制造出一个“像人”的智能体。“像人”本身是一个非常具有主观色彩的评价，而阿兰-图灵在1950年提出的“图灵测试”和后人提出的“完全图灵测试”则规避掉了这个模糊评价，要求智能体在不同的测试项之下的输出与人类的输出“不可区分”：</p>
+<h3 id="图灵测试：人类提问者在在向被测试方提出一些问题后无法分辨这些回答来自人类还是计算机">图灵测试：人类提问者在在向被测试方提出一些问题后无法分辨这些回答来自人类还是计算机</h3>
+<p>达到这一点，需要计算机具备以下能力：</p>
+<ul>
+<li>自然语言处理：在机器语言和人类语言之间搭建桥梁；</li>
+<li>知识表示：存储计算机所“知道”以及“听到”的内容；</li>
+<li>自动推理：将输入进行处理，得到输出；</li>
+<li>机器学习：适应新的环境，并检测和推断模式。</li>
+</ul>
+<h3 id="完全图灵测试：需要与真实世界中的对象和人进行交互">完全图灵测试：需要与真实世界中的对象和人进行交互</h3>
+<p>达到这一点，需要计算机额外具备以下能力：</p>
+<ul>
+<li>计算机视觉和语音识别功能：感知世界；</li>
+<li>机器人学：以操纵对象并行动。</li>
+</ul>
+<p>图灵测试要求测试者与受试者之间的信息通过电信号来传递，而完全图灵测试则可以包含一些必要的物理层面的交互。这两种测试如下图所示：<br>
+<img src="/2024/12/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6AI%EF%BC%9A1-1%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9B%BE%E6%99%AF/%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95.png" alt="什么是人工智能"></p>
+<p>在逛一些网站时，有时会蹦出来一些窗口，要求我们填写验证码，以证明我们是人类，这就属于是一种图灵测试。</p>
+<p>以上6个学科构成了人工智能的大部分内容，但是人工智能研究人员却不会拘泥于制造出一个“像人”的机器。事实上我们也看到了，AlphaGo等机器已经远远超过了人类的水准。因为人类并不总是能做出“正确”决策，但是如果我们将“正确”赋予具体的含义，机器则会责无旁贷地执行一切设定为“正确”的行动。</p>
+<h2 id="C、理性思考：“思维法则”">C、理性思考：“思维法则”</h2>
+<p>在这个组合下，研究人员的目标就是构建“正确”的思维方法。亚里士多德已经提供了正确的思维方法，即“三段论”。在此基础上，逻辑学应运而生。逻辑学家建立了一套精确的描述方法，用以描述世界上的物体及其关系。在这套方法之下，我们对于世界的认知是确定的。</p>
+<p>然而，世界最为美妙的地方则在于其不确定性，或者说未来的不可预测性。90年代卡斯帕罗夫输给了“深蓝”让我们见识到了计算机的潜力。但是即使这样，我们依然说围棋的复杂程度相当之高，甚至超过了宇宙的原子总量。仅靠逻辑学，计算机在围棋这一游戏上就永远无法战胜人类。概率论则填补了这一鸿沟，允许我们在掌握不确定信息的情况下进行严格的推理。于是，计算机拥有了计算成功概率最大的行动的能力。</p>
+<h2 id="D、理性行为：理性智能体">D、理性行为：理性智能体</h2>
+<p>构建了理性思考的法则后，我们迈出了制造理性智能体（可以为实现最佳结果或最佳期望结果而采取行动）的重要一步。但是理性思考只是采取最佳（期望）行动的一种途径。例如我们人类就有非条件反射这一保命神技，可以及时躲避危险源，这比通过大脑大脑处理再有意识地命令肌肉收缩要快得多。通过图灵测试所需技能也可以使智能体采取理性行动。</p>
+<p>总之与其他方法相比，基于人工智能的理性智能体方法相比有两个明显优点：首先是普适性，因为“正确的推断”仅仅是实现理性的几种途径之一；其次是理性的标准在数学上定义明确，更适合科学发展。简而言之，人工智能专注于研究和构建做正确事情的智能体，其中正确的事情取决于我们提供给智能体的目标定义。这种通用范式可称为标准模型。标准模型在其他领域也非常常见，其科学性已经得到了充分论证，例如运筹学中存在对应的“规则”（即约束条件）以及“收益”（即目标函数）。</p>
+<h2 id="E、有益性（原文翻译为“益机”）">E、有益性（原文翻译为“益机”）</h2>
+<p>标准模型自提出以来就一直是AI研究的指南，但是它可能不是一个正确的模型，因为它假定我们总能为机器提供完全指定的目标。</p>
+<p>人类需求和机器之间的价值很难完全的对齐。在自动驾驶时，我们要求汽车“安全且快速地”将我们从起点运送到目的地。那么何谓“安全且快速”？不同的人有不同的理解。举个极端的栗子，重视安全，轻视速度的人可能认为要确保100%不发生事故，那么最保险的做法当然是永远挑车流量最小的时刻行驶，于是这辆汽车就呆在原地不动，直到车流量降低再考虑出发。这个例子说明，我们很难定义完全准确的安全目标。</p>
+<p>再比如在国际象棋中，机器是否可以“想出”一些盘外招，削弱对方的战斗力？例如对方是人类时，可以发出一些噪音以干扰对手；对方是机器时，则可以劫持对方的算力。这个例子则说明，智能体在实现目标时，很可能采取一些我们预料之外的手段。</p>
+<p>我们想要的时对人类可证益的智能体，这就要求我们尽可能准确地将目标传达给机器，同时在机器不了解完整的目标时，采取谨慎行动，并寻求许可。</p>
+<p>（未完待续……）</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post_share"><div class="social-share" data-image="/img/STOAT.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/12/03/%E9%87%8F%E5%AD%90%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%89%8D%E8%A8%80/" title="量子技术（一）：前言"><img class="cover" src="/img/%E9%87%8F%E5%AD%90%E6%8A%80%E6%9C%AF.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">量子技术（一）：前言</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">1.1.1 何谓人工智能？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A%E3%80%81%E7%B1%BB%E4%BA%BA%E6%80%9D%E8%80%83%E2%80%94%E2%80%94%E8%AE%A4%E7%9F%A5%E5%BB%BA%E6%A8%A1%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">A、类人思考——认知建模的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B%E3%80%81%E7%B1%BB%E4%BA%BA%E8%A1%8C%E4%B8%BA%E2%80%94%E2%80%94%E9%80%9A%E8%BF%87%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">B、类人行为——通过图灵测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95%EF%BC%9A%E4%BA%BA%E7%B1%BB%E6%8F%90%E9%97%AE%E8%80%85%E5%9C%A8%E5%9C%A8%E5%90%91%E8%A2%AB%E6%B5%8B%E8%AF%95%E6%96%B9%E6%8F%90%E5%87%BA%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E5%90%8E%E6%97%A0%E6%B3%95%E5%88%86%E8%BE%A8%E8%BF%99%E4%BA%9B%E5%9B%9E%E7%AD%94%E6%9D%A5%E8%87%AA%E4%BA%BA%E7%B1%BB%E8%BF%98%E6%98%AF%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="toc-number">1.2.1.</span> <span class="toc-text">图灵测试：人类提问者在在向被测试方提出一些问题后无法分辨这些回答来自人类还是计算机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E5%9B%BE%E7%81%B5%E6%B5%8B%E8%AF%95%EF%BC%9A%E9%9C%80%E8%A6%81%E4%B8%8E%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E4%B8%AD%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%92%8C%E4%BA%BA%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92"><span class="toc-number">1.2.2.</span> <span class="toc-text">完全图灵测试：需要与真实世界中的对象和人进行交互</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C%E3%80%81%E7%90%86%E6%80%A7%E6%80%9D%E8%80%83%EF%BC%9A%E2%80%9C%E6%80%9D%E7%BB%B4%E6%B3%95%E5%88%99%E2%80%9D"><span class="toc-number">1.3.</span> <span class="toc-text">C、理性思考：“思维法则”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D%E3%80%81%E7%90%86%E6%80%A7%E8%A1%8C%E4%B8%BA%EF%BC%9A%E7%90%86%E6%80%A7%E6%99%BA%E8%83%BD%E4%BD%93"><span class="toc-number">1.4.</span> <span class="toc-text">D、理性行为：理性智能体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E%E3%80%81%E6%9C%89%E7%9B%8A%E6%80%A7%EF%BC%88%E5%8E%9F%E6%96%87%E7%BF%BB%E8%AF%91%E4%B8%BA%E2%80%9C%E7%9B%8A%E6%9C%BA%E2%80%9D%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">E、有益性（原文翻译为“益机”）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/12/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6AI%EF%BC%9A1-1%E2%80%94%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E5%9B%BE%E6%99%AF/" title="从零开始学AI：1-1—人工智能的图景">从零开始学AI：1-1—人工智能的图景</a><time datetime="2024-12-29T07:24:40.000Z" title="发表于 2024-12-29 15:24:40">2024-12-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/03/%E9%87%8F%E5%AD%90%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%89%8D%E8%A8%80/" title="量子技术（一）：前言"><img src="/img/%E9%87%8F%E5%AD%90%E6%8A%80%E6%9C%AF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="量子技术（一）：前言"/></a><div class="content"><a class="title" href="/2024/12/03/%E9%87%8F%E5%AD%90%E6%8A%80%E6%9C%AF%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%89%8D%E8%A8%80/" title="量子技术（一）：前言">量子技术（一）：前言</a><time datetime="2024-12-03T15:18:34.000Z" title="发表于 2024-12-03 23:18:34">2024-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/01/%E4%B9%92%E4%B9%93%E7%90%83%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E7%9B%B4%E6%9D%BF%E6%AD%A3%E6%89%8B%E6%94%BB%E7%90%83/" title="乒乓球学习资料（三）：直板正手攻球"><img src="/img/%E8%AE%B8%E6%98%95%E6%AD%A3%E6%89%8B.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="乒乓球学习资料（三）：直板正手攻球"/></a><div class="content"><a class="title" href="/2024/12/01/%E4%B9%92%E4%B9%93%E7%90%83%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E7%9B%B4%E6%9D%BF%E6%AD%A3%E6%89%8B%E6%94%BB%E7%90%83/" title="乒乓球学习资料（三）：直板正手攻球">乒乓球学习资料（三）：直板正手攻球</a><time datetime="2024-12-01T10:13:49.000Z" title="发表于 2024-12-01 18:13:49">2024-12-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/21/%E5%BF%AB%E4%B9%90%E9%80%92%E8%B4%A8%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%A4%A7%E9%BA%BB%E7%B4%A0/" title="快乐递质（五）：大麻素">快乐递质（五）：大麻素</a><time datetime="2024-11-21T15:07:47.000Z" title="发表于 2024-11-21 23:07:47">2024-11-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/05/%E6%95%B0%E5%AD%A6%E7%9A%84%E6%80%9D%E7%BB%B4%E6%96%B9%E5%BC%8F/" title="数学的思维方式">数学的思维方式</a><time datetime="2024-11-05T00:51:35.000Z" title="发表于 2024-11-05 08:51:35">2024-11-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By starduucks</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'TSQci9GpZx2NylwT5jDnT0JP-gzGzoHsz',
+      appKey: 'I6Hb2CrOih5ni92tKkiyFZF5',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Valine' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
